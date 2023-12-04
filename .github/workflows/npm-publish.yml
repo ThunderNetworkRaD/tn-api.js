@@ -4,7 +4,7 @@ on:
     types: [created]
 jobs:
   Publish-NPM:
-    runs-on: ubuntu-latest
+    runs-on: node1
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -22,7 +22,7 @@ jobs:
           REGISTRY2: 'registry=https://registry.npmjs.org/'
 
   Publish-GitHub-NPM:
-    runs-on: ubuntu-latest
+    runs-on: node1
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -40,7 +40,7 @@ jobs:
           REGISTRY2: '@thundernetworkrad:registry=https://npm.pkg.github.com'
 
   Publish-SOURCE:
-    runs-on: ubuntu-latest
+    runs-on: node1
     steps:
       - name: Checkout
         uses: actions/checkout@v2
