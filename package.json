@@ -1,0 +1,10 @@
+{
+  "name": "@thundernetworkrad/template-npm-packages",
+  "version": "0.0.1",
+  "description": "A Public Template for npm",
+  "main": "index.js",
+  "repository": "https://github.com/ThunderNetworkRaD/template-npm-packages",
+  "author": "ThunderNetworkRaD | Killer Boss Original",
+  "license": "Mozilla Public License 2.0",
+  "private": false
+}
