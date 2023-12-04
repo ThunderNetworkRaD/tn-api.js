@@ -1,9 +1,9 @@
 {
-  "name": "@thundernetworkrad/template-npm-packages",
+  "name": "tn-api.js",
   "version": "0.0.1",
   "description": "A Public Template for npm",
   "main": "index.js",
-  "repository": "https://github.com/ThunderNetworkRaD/template-npm-packages",
+  "repository": "https://source.thundernetwork.org/ThunderNetworkRaD/tn-api.js",
   "author": "ThunderNetworkRaD | Killer Boss Original",
   "license": "Mozilla Public License 2.0",
   "private": false
