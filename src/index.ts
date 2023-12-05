@@ -32,20 +32,17 @@ export default class TNC extends EventEmitter {
     connect() {
         const socket = io(this.URL);
         socket.on("connect", () => {
-            console.log(socket.id);
             this.id = socket.id;
         });
         socket.on("verify", () => {
-            console.log("send verification")
             socket.emit("verify", this.token);
         });
         socket.on("ready", (data) => {
-            console.log(`Logged in as ${data}`);
-            this.emit("ready");
+            this.emit("ready", data);
         });
-
-        socket.on("event", (data) => {
-            this.emit(data);
+        socket.on("DISCORD_VERIFICATION", (data) => {
+            let d = JSON.parse(JSON.stringify(data));
+            this.emit("DISCORD_VERIFICATION", d.id);
         });
     }
 }
