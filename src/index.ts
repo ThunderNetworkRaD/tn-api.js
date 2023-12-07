@@ -1,11 +1,13 @@
 import { io } from "socket.io-client";
 import CreditsManager from "./CreditsManager.js";
 import EventEmitter from 'node:events';
+import IAManager from "./IAManager.js";
 
 export default class TNC extends EventEmitter {
     token: string | undefined;
     URL = "https://api.thundernetwork.org";
     credits: CreditsManager;
+    IA: IAManager;
     id: string | undefined;
 
     /**
@@ -22,6 +24,7 @@ export default class TNC extends EventEmitter {
             this.token = options.token;
         }
         this.credits = new CreditsManager(this.URL, this.token);
+        this.IA = new IAManager(this.URL, this.token);
     }
 
     /**
