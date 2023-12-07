@@ -15,7 +15,7 @@ export default class CreditsManager {
      * @param {number} id - The ID of the user.
      * @return {Promise<number>} The balance of the user.
      */
-    async balance(id: number) {
+    async balance(id: string|number) {
         let req = await axios.get(`${this.URL}/credits/${id}`);
         if (req.status == 404) throw new Error("User not found");
         return req.data.credits;
