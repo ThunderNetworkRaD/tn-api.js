@@ -22,7 +22,7 @@ export default class CreditsManager {
     }
 
     /**
-     * Sets the ID for the function.
+     * Sets the number of credits for a given user.
      *
      * @param {number} id - The ID to set.
      * @return {Promise<number>} - The credits of the user.

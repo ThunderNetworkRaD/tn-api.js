@@ -45,7 +45,7 @@ export default class TNC extends EventEmitter {
         });
         socket.on("discord_verification", (data) => {
             let d = JSON.parse(JSON.stringify(data));
-            this.emit("discord_verification", d.id);
+            this.emit("discord_verification", d.id, d.code);
         });
     }
 }
