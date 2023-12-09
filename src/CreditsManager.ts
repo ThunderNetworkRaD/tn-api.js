@@ -66,7 +66,7 @@ export default class CreditsManager {
      * @return {void}
      */
     async pay(id: number, toPayID: number, amount: number) {
-        let req = await axios.post(`${this.URL}/credits/${id}`, { amount, to: toPayID }, { headers: { Authorization: `Bearer ${this.token}` } });
+        let req = await axios.patch(`${this.URL}/credits/${id}`, { amount, to: toPayID }, { headers: { Authorization: `Bearer ${this.token}` } });
         if (req.status == 403) throw new Error("No Permission");
         if (req.status == 404) throw new Error("User not Found");
     }
