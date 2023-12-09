@@ -56,4 +56,18 @@ export default class CreditsManager {
         if (req.status == 404) throw new Error("Transaction not Found");
         return req.data.transaction;
     }
+
+    /**
+     * Sends a payment request to the specified user.
+     *
+     * @param {number} id - The ID of the user making the payment.
+     * @param {number} toPayID - The ID of the user to whom the payment is being made.
+     * @param {number} amount - The amount of the payment.
+     * @return {void}
+     */
+    async pay(id: number, toPayID: number, amount: number) {
+        let req = await axios.post(`${this.URL}/credits/${id}`, { amount, to: toPayID }, { headers: { Authorization: `Bearer ${this.token}` } });
+        if (req.status == 403) throw new Error("No Permission");
+        if (req.status == 404) throw new Error("User not Found");
+    }
 }

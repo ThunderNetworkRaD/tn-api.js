@@ -1,6 +1,6 @@
 {
   "name": "tn-api.js",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "description": "A Public Template for npm",
   "main": "build/index.js",
   "repository": "https://source.thundernetwork.org/ThunderNetworkRaD/tn-api.js",

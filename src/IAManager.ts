@@ -9,7 +9,7 @@ export default class IAManager {
         this.token = token;
     }
 
-    async get(id: number) {
+    async get(id: string|number) {
         let req = await axios.get(`${this.URL}/IA/${id}`);
         if (req.status == 404) throw new Error("User not Found");
         return req.data.user;
