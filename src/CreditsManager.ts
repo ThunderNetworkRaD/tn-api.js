@@ -69,7 +69,9 @@ export default class CreditsManager {
         if (amount < 0) throw new Error("Invalid Amount");
 
         let req = await axios.patch(`${this.URL}/credits/${id}`, { amount, to: toPayID }, { headers: { Authorization: `Bearer ${this.token}` } });
-        if (req.status == 403) throw new Error("No Permission");
+        if (req.status == 400 && req.data.error == "TOO_MANY_CREDITS") throw new Error("Not Enought Credits");
+        if (req.status == 403 && req.data.error == "NO_NEGATIVE_AMOUNT") throw new Error("Invalid Amount");
+        else if (req.status == 403) throw new Error("No Permission");
         if (req.status == 404) throw new Error("User not Found");
     }
 }
