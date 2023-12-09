@@ -14,8 +14,4 @@ export default class IAManager {
         if (req.status == 404) throw new Error("User not Found");
         return req.data;
     }
-
-    async verify(code: number, identifier: any) {
-        await axios.post(`${this.URL}/IA/verify/${code}`, { "identifier": "" });
-    }
 }

@@ -27,9 +27,12 @@ export default class CreditsManager {
      * @param {number} id - The ID to set.
      * @return {Promise<number>} - The credits of the user.
      */
-    async set(id: number) {
-        let req = await axios.post(`${this.URL}/credits/${id}`);
+    async set(id: number, number: number) {
+        let req = await axios.post(`${this.URL}/credits/${id}`, { number }, { headers: { Authorization: `Bearer ${this.token}` } });
         if (req.status == 404) throw new Error("User not Found");
-        return req.data.credits;
+    }
+
+    async verify(code: number) {
+        await axios.get(`${this.URL}/credits/verify/${code}`, { headers: { Authorization: `Bearer ${this.token}` } });
     }
 }
