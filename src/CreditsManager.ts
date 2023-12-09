@@ -22,17 +22,38 @@ export default class CreditsManager {
     }
 
     /**
-     * Sets the number of credits for a given user.
+     * Sets the credit number for a given ID.
      *
-     * @param {number} id - The ID to set.
-     * @return {Promise<number>} - The credits of the user.
+     * @param {string|number} id - The ID of the user.
+     * @param {number} number - The new credit number.
      */
-    async set(id: number, number: number) {
+    async set(id: string|number, number: number) {
         let req = await axios.post(`${this.URL}/credits/${id}`, { number }, { headers: { Authorization: `Bearer ${this.token}` } });
+        if (req.status == 403) throw new Error("No Permission");
         if (req.status == 404) throw new Error("User not Found");
     }
 
-    async verify(code: number) {
-        await axios.get(`${this.URL}/credits/verify/${code}`, { headers: { Authorization: `Bearer ${this.token}` } });
+    /**
+     * Verifies the given transaction.
+     *
+     * @param {number} code - The code of the transaction to be verified.
+     * @return {void} - This function does not return anything.
+     */
+    async verifyTransaction(code: number) {
+        let req = await axios.post(`${this.URL}/credits/verify/${code}`, {}, { headers: { Authorization: `Bearer ${this.token}` } });
+        if (req.status == 403) throw new Error("No Permission");
+        if (req.status == 404) throw new Error("Transaction not Found");
+    }
+
+    /**
+     * Retrieves a transaction by its code.
+     *
+     * @param {number} code - The code of the transaction.
+     * @return {Promise<object>} The transaction object.
+     */
+    async getTransaction(code: number) {
+        let req = await axios.get(`${this.URL}/credits/verify/${code}`);
+        if (req.status == 404) throw new Error("Transaction not Found");
+        return req.data.transaction;
     }
 }
