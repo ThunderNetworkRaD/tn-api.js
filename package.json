@@ -1,6 +1,6 @@
 {
   "name": "tn-api.js",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A Public Template for npm",
   "main": "build/index.js",
   "repository": "https://source.thundernetwork.org/ThunderNetworkRaD/tn-api.js",
@@ -9,6 +9,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
+    "publish": "npm run build && npm publish",
     "test": "yarn build && node build/test.js"
   },
   "dependencies": {
