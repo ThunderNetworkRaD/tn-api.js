@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 import CreditsManager from "./CreditsManager.js";
 import EventEmitter from 'node:events';
-import IAManager from "./IAManager.js";
+import {IAManager} from "./IAManager.js";
 
 export default class TNC extends EventEmitter {
     token: string | undefined;
@@ -20,10 +20,10 @@ export default class TNC extends EventEmitter {
     constructor(options?: { customURL?: string, token?: string }) {
         super();
         if (options) {
-            this.URL = options.customURL || this.URL;
-            this.token = options.token;
+            if (options.customURL) this.URL = options.customURL;
+            if (options.token) this.token = options.token;
         }
-        this.credits = new CreditsManager(this.URL, this.token);
+        // this.credits = new CreditsManager(this.URL, this.token);
         this.IA = new IAManager(this.URL, this.token);
     }
 
