@@ -1,7 +1,7 @@
 {
   "name": "tn-api.js",
   "version": "0.7.0",
-  "description": "A Public Template for npm",
+  "description": "Thunder Network's API Wrapper",
   "main": "build/index.js",
   "repository": "https://source.thundernetwork.org/ThunderNetworkRaD/tn-api.js",
   "author": "ThunderNetworkRaD | Killer Boss Original",
