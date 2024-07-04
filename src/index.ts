@@ -23,7 +23,7 @@ export default class TNC extends EventEmitter {
             if (options.customURL) this.URL = options.customURL;
             if (options.token) this.token = options.token;
         }
-        // this.credits = new CreditsManager(this.URL, this.token);
+        this.credits = new CreditsManager(this.URL, this.token);
         this.IA = new IAManager(this.URL, this.token);
     }
 
