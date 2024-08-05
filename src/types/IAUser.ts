@@ -1,4 +1,4 @@
-import { IALanguage } from "./IALanguage"
+import { IALanguage } from "./IALanguage.js"
 
 export class IAUser {
     id: string;

@@ -1,4 +1,3 @@
-import { io } from "socket.io-client";
 import CreditsManager from "./CreditsManager.js";
 import EventEmitter from 'node:events';
 import {IAManager} from "./IAManager.js";
@@ -9,6 +8,8 @@ export default class TNC extends EventEmitter {
     credits: CreditsManager;
     IA: IAManager;
     id: string | undefined;
+    socket: WebSocket | undefined;
+    privateSocket: WebSocket | undefined;
 
     /**
      * Constructor for the class.
@@ -32,20 +33,29 @@ export default class TNC extends EventEmitter {
      *
      * @return {void} This function does not return any value.
      */
-    connect() {
-        const socket = io(this.URL);
-        socket.on("connect", () => {
-            this.id = socket.id;
+    connect(privateBoolean: boolean = false, secret: string | undefined = undefined) {
+        let link = "wss://api.thundernetwork.org/ws";
+        if (privateBoolean && secret) {
+            link = "wss://api.thundernetwork.org/private";
+            console.log("Connecting to private endpoint");
+        } else {
+            console.log("Connecting to websocket");
+        }
+        const socket = new WebSocket(link);
+
+        socket.addEventListener("open", () => {
+            console.log("Connected to server");
+
+            if (privateBoolean && secret) {
+                this.privateSocket = socket;
+                console.log("Authenticating");
+                socket.send(secret);
+            } else {
+                this.socket = socket;
+            }
         });
-        socket.on("verify", () => {
-            socket.emit("verify", this.token);
-        });
-        socket.on("ready", (data) => {
-            this.emit("ready", data);
-        });
-        socket.on("discord_verification", (data) => {
-            let d = JSON.parse(JSON.stringify(data));
-            this.emit("discord_verification", d.id, d.code);
+        socket.addEventListener("message", (event) => {
+            console.log("Message from server ", event.data);
         });
     }
 }

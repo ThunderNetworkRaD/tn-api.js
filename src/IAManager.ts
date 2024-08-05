@@ -1,6 +1,6 @@
 import axios from "axios";
-import {IAUser} from "./types/IAUser";
-import {Identifier} from "./utils/IdentifierConstructor";
+import {IAUser} from "./types/IAUser.js";
+import {Identifier} from "./utils/IdentifierConstructor.js";
 
 export class IAManager {
     token: string | undefined;

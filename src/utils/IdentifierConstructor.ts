@@ -1,4 +1,4 @@
-import { IdentifierType } from "../types/IdentifierType";
+import { IdentifierType } from "../types/IdentifierType.js";
 
 export class Identifier {
     type: IdentifierType;
