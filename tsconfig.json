@@ -6,6 +6,7 @@
     "outDir": "./build",
     "rootDir": "./src",
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
   "include": ["src"],
