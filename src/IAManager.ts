@@ -64,18 +64,22 @@ export class IAManager {
     /**
      * Asynchronously creates a new user in the IA API.
      *
-     * @param {string} username - The username of the user.
+     * @param {string?} username - The username of the user.
      * @param {string} password - The password of the user.
-     * @param {Identifier} identifier - The identifier of the user.
+     * @param {Identifier} identifier - The identifier of the user. <type>:<value>
      * @return {string} The ID of the newly created user.
      */
-    async create(username: string, password: string, identifier: Identifier) {
-        let req = await axios.post(`${this.URL}/IA}`,
-            {
-                username,
-                password,
-                identifier
-            });
+    async create(password: string, identifier: Identifier, username?: string) {
+        let psw: any = {
+            password,
+            identifier,
+        };
+
+        if (username) psw.username = username
+
+        let req = await axios.put(`${this.URL}/inav`,
+            psw
+        );
         return req.data.id;
     }
 }
