@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@types/ws": "^8.5.12",
-    "axios": "^1.6.2",
+    "axios": "^1.7.4",
     "global": "^4.4.0",
     "socket.io-client": "^4.7.2",
     "ts-node": "^10.9.2",
